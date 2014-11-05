@@ -37,9 +37,13 @@ module.exports = function(grunt) {
         seperator: ';'
       },
       dist: {
-        src: ['src/js/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+        src: ['src/js/retreiver.js', 'src/js/data.js', 'src/js/deals.js'],
+        dest: 'dist/<%= pkg.name %>.wdgt/<%= pkg.name %>.js'
       }
+    },
+    jshint: {
+      beforeconcat: ['src/js/*.js'],
+      afterconcat: ['<%= concat.dist.dest %>']
     },
     uglify: {
       options: {
@@ -52,7 +56,9 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      js: ['dist/<%= pkg.name %>.wdgt/*.js'],
+      js: [
+        'dist/<%= pkg.name %>.wdgt/*.js'
+      ],
       css: ['dist/<%= pkg.name %>.wdgt/*.css']
     },
     inline: {
@@ -62,7 +68,7 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -71,7 +77,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-inline');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy', 'cssmin', 'concat', 'uglify', 'inline', 'clean']);
+  grunt.registerTask('default', ['copy', 'cssmin', 'concat', 'jshint', 'uglify', 'inline', 'clean']);
   
 
 }

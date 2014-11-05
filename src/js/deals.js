@@ -1,13 +1,14 @@
 var steepandcheapData,
     body,
-    image 
+    image;
 
-steepandcheapData = new DEALS.data("steepandcheap")
+retriever = new DEALS.Retreiver("steepandcheap", function() {
+  body = document.getElementsByTagName("body")[0];
+  image = document.createElement("img");
 
-body = document.getElementsByTagName("body")[0]
-image = document.createElement("img")
-
-image.setAttribute("src", steepandcheapData.imageUrl())
-
-body.appendChild(image)
-
+  steepandcheapData = new DEALS.Data("steepandcheap", this.responseText);
+  
+  image.setAttribute("src", steepandcheapData.imageUrl());
+  
+  body.appendChild(image);
+});
