@@ -33,7 +33,7 @@ DEALS.data = function(site) {
     }
   }
 
-  self.imageURL = function() {
+  self.imageUrl = function() {
     if (self.site === "steepandcheap" || self.site === "chainlove") {
       return self.json['currentItem']['variants'][0]['images']['bigImage']
     }
