@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <style>
+body:{background-color:#fff;height:100px;width:100px}
+</style>
+    <script>
+/*! deals-widget 05-11-2014 */
+DEALS.data=function(a){var b=this;return b.site=a,b.load=function(){var a;a=new XMLHttpRequest,a.setRequestHeader("Cache-Control","no-cache"),a.open("GET",b.siteUrl(),!1),a.send(null),200===a.status&&b.parse(a.responseText)},b.parse=function(a){b.parseJson(a)},b.parseJson=function(a){b.json=JSON.parse(a)},b.siteUrl=function(){return"steepandcheap"===b.site?"http://www.steepandcheap.com/steepcheap/sac/jsdata.js":"chainlove"===b.site?"http://www.steepandcheap.com/chainlove/cl/jsdata.js":void 0},b.imageUrl=function(){return"steepandcheap"===b.site||"chainlove"===b.site?b.json.currentItem.variants[0].images.bigImage:void 0},b.title=function(){return"steepandcheap"===b.site||"chainlove"===b.site?b.json.currentItem.productTitle:void 0},b.price=function(){return"steepandcheap"===b.site||"chainlove"===b.site?b.json.currentItem.price:void 0},b.parse(),b};var steepandcheapData,body,image;steepandcheapData=new DEALS.data("steepandcheap"),body=document.getElementsByTagName("body")[0],image=document.createElement("img"),image.setAttribute("src",steepandcheapData.imageUrl()),body.appendChild(image);
+</script> 
+  </head>
+
+  <body>
+    <span class="helloText">Hello, World!</span>
+  </body>
+</html>

@@ -25,6 +25,13 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.wdgt/Info.plist'
       }
     },
+    cssmin: {
+      combine: {
+        files: {
+          'dist/<%= pkg.name %>.wdgt/<%= pkg.name %>.min.css': ['src/css/*.css']
+        }
+      }
+    },
     concat: {
       options: {
         seperator: ';'
@@ -45,7 +52,13 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      js: ['<%= concat.dist.dest %>']
+      js: ['dist/<%= pkg.name %>.wdgt/*.js'],
+      css: ['dist/<%= pkg.name %>.wdgt/*.css']
+    },
+    inline: {
+      dist: {
+        src: [ 'dist/<%= pkg.name %>.wdgt/index.html' ]
+      }
     }
   });
 
@@ -54,9 +67,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-inline');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy', 'concat', 'uglify', 'clean']);
+  grunt.registerTask('default', ['copy', 'cssmin', 'concat', 'uglify', 'inline', 'clean']);
   
 
 }
