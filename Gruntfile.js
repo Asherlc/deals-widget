@@ -28,8 +28,14 @@ module.exports = function(grunt) {
     cssmin: {
       combine: {
         files: {
-          'dist/<%= pkg.name %>.wdgt/<%= pkg.name %>.min.css': ['src/css/*.css']
+          'dist/<%= pkg.name %>.wdgt/<%= pkg.name %>.min.css': ['src/css/*.css', 'tmp/_bower.css']
         }
+      }
+    },
+    bower_concat: {
+      all: {
+        dest: 'tmp/_bower.js',
+        cssDest: 'tmp/_bower.css'
       }
     },
     concat: {
@@ -37,7 +43,7 @@ module.exports = function(grunt) {
         seperator: ';'
       },
       dist: {
-        src: ['src/js/retreiver.js', 'src/js/data.js', 'src/js/deals.js'],
+        src: ['tmp/_bower.js', 'src/js/retreiver.js', 'src/js/data.js', 'src/js/deals.js'],
         dest: 'dist/<%= pkg.name %>.wdgt/<%= pkg.name %>.js'
       }
     },
@@ -56,9 +62,8 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      js: [
-        'dist/<%= pkg.name %>.wdgt/*.js'
-      ],
+      all: ['tmp/*'],
+      js:  ['dist/<%= pkg.name %>.wdgt/*.js'],
       css: ['dist/<%= pkg.name %>.wdgt/*.css']
     },
     inline: {
@@ -74,10 +79,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-inline');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy', 'cssmin', 'concat', 'jshint', 'uglify', 'inline', 'clean']);
+  grunt.registerTask('default', ['copy', 'bower_concat', 'cssmin', 'concat', 'uglify', 'inline', 'clean']);
   
 
 }

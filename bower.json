@@ -1,0 +1,19 @@
+{
+  "name": "deals-widget",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Asherlc/deals-widget",
+  "authors": [
+    "Asher Cohen <asherlc@asherlc.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.0"
+  }
+}

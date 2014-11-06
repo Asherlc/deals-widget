@@ -14,5 +14,11 @@
 	<string>index.html</string>
 	<key>AllowFullAccess</key>
 	<true/>
+	<key>AllowNetworkAccess</key>
+	<true/>
+	<key>Height</key>
+	<integer>520</integer>
+	<key>Width</key>
+	<integer>420</integer>
 </dict>
 </plist>

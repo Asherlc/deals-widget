@@ -24,6 +24,14 @@ DEALS.Data = function(site, rawData) {
     }
   };
 
+  self.productUrl = function() {
+    if (self.site === "steepandcheap") {
+      return "http://www.steepandcheap.com/current-steal";
+    } else if (self.site === "chainlove") {
+      return "http://www.chainlove.com";
+    }
+  };
+
   self.title = function() {
     if (self.site === "steepandcheap" || self.site === "chainlove") {
       return self.json.currentItem.productTitle;
